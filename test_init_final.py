@@ -1433,7 +1433,7 @@ class mainCog(commands.Cog):
 			command_list += ','.join(command[42]) + ' 사다리, 정산, 척살, 경주, 아이템\n'     #!채널삭제
 			command_list += ','.join(command[34]) + ' ※ 관리자만 실행 가능\n\n'     #서버나가기
 			command_list += ','.join(command[22]) + '\n'     #보스탐
-			command_list += ','.join(command[23]) + '\n'     #!보스탐
+			command_list += ','.join(command[23]) + '\n'     #!알
 			command_list += '[보스명]컷 또는 [보스명]컷 0000, 00:00\n'  
 			command_list += '[보스명] 컷 또는 [보스명] 컷 0000, 00:00\n'   
 			command_list += '[보스명]멍 또는 [보스명]멍 0000, 00:00\n'     
@@ -2380,12 +2380,12 @@ class mainCog(commands.Cog):
 					tmp_boss_information[0] = '``` ```'
 
 				embed = discord.Embed(
-						title = "----- 보스탐 정보 -----",
+						title = "----- 알 LIST -----",
 						description= boss_information[0],
 						color=0x0000ff
 						)
 				embed.add_field(
-						name="----- 미예약 보스 -----",
+						name="----- 입력가능한 알 LIST -----",
 						value= tmp_boss_information[0],
 						inline = False
 						)				
@@ -2398,7 +2398,7 @@ class mainCog(commands.Cog):
 					boss_information[0] = '``` ```'
 
 				embed = discord.Embed(
-						title = "----- 보스탐 정보 -----",
+						title = "----- 알 LIST -----",
 						description= boss_information[0],
 						color=0x0000ff
 						)
@@ -2425,7 +2425,7 @@ class mainCog(commands.Cog):
 					tmp_boss_information[0] = '``` ```'
 
 				embed = discord.Embed(
-					title = "----- 미예약 보스 -----",
+					title = "----- 입력가능한 알 LIST -----",
 					description= tmp_boss_information[0],
 					color=0x0000ff
 					)
