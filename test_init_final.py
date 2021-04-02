@@ -616,7 +616,7 @@ async def dbSave():
 	
 	datelist = list(set(datelist1))
 
-	information1 = '----- 보스탐 정보 -----\n'
+	information1 = '----- 쿠킹중인알 LIST -----\n'
 	for timestring in sorted(datelist):
 		for i in range(bossNum):
 			if timestring == bossTime[i]:
@@ -1784,66 +1784,6 @@ class mainCog(commands.Cog):
 		else:
 			return
 
-	################ 미예약 보스타임 출력 ################ 
-	@commands.command(name=command[10][0], aliases=command[10][1:])
-	async def nocheckBoss_(self, ctx):
-		if ctx.message.channel.id == basicSetting[7]:
-			tmp_boss_information = []
-			tmp_cnt = 0
-			tmp_boss_information.append('')
-			
-			for i in range(bossNum):
-				if bossTimeString[i] == '99:99:99' and bossMungFlag[i] != True :
-					if len(tmp_boss_information[tmp_cnt]) > 1800 :
-						tmp_boss_information.append('')
-						tmp_cnt += 1
-					tmp_boss_information[tmp_cnt] = tmp_boss_information[tmp_cnt] + bossData[i][0] + ','
-
-			if len(tmp_boss_information) == 1:
-				if len(tmp_boss_information[0]) != 0:
-					tmp_boss_information[0] = "```fix\n" + tmp_boss_information[0][:len(tmp_boss_information[0])-1] + "\n```"
-				else :
-					tmp_boss_information[0] = '``` ```'
-
-				embed = discord.Embed(
-						title = "----- 미예약 보스 -----",
-						description= tmp_boss_information[0],
-						color=0x0000ff
-						)
-				await ctx.send( embed=embed, tts=False)
-			else:
-				if len(tmp_boss_information[0]) != 0:
-					if len(tmp_boss_information) == 1 :
-						tmp_boss_information[0] = "```fix\n" + tmp_boss_information[0][:len(tmp_boss_information[0])-1] + "\n```"
-					else:
-						tmp_boss_information[0] = "```fix\n" + tmp_boss_information[0] + "\n```"
-				else :
-					tmp_boss_information[0] = '``` ```'
-
-				embed = discord.Embed(
-					title = "----- 미예약 보스 -----",
-					description= tmp_boss_information[0],
-					color=0x0000ff
-					)
-				await ctx.send( embed=embed, tts=False)
-				for i in range(len(tmp_boss_information)-1):
-					if len(tmp_boss_information[i+1]) != 0:
-						if i == len(tmp_boss_information)-2:
-							tmp_boss_information[i+1] = "```fix\n" + tmp_boss_information[i+1][:len(tmp_boss_information[i+1])-1] + "\n```"
-						else:
-							tmp_boss_information[i+1] = "```fix\n" + tmp_boss_information[i+1] + "\n```"							
-					else :
-						tmp_boss_information[i+1] = '``` ```'
-
-					embed = discord.Embed(
-							title = '',
-							description= tmp_boss_information[i+1],
-							color=0x0000ff
-							)
-					await ctx.send( embed=embed, tts=False)
-		else:
-			return
-
 	################ 분배 결과 출력 ################ 
 	@commands.command(name=command[11][0], aliases=command[11][1:])
 	async def bunbae_(self, ctx):
@@ -2610,86 +2550,7 @@ class mainCog(commands.Cog):
 							else :
 								boss_information[cnt] = boss_information[cnt] + ouput_bossData[i][3] + ' ' + ouput_bossData[i][2] + ' : ' + ouput_bossData[i][0] + ' (멍 ' + str(ouput_bossData[i][5]) + '회)' + ' ' + ouput_bossData[i][6] + '\n'
 
-			###########################고정보스출력
-			if len(fixedboss_information[0]) != 0:
-				fixedboss_information[0] = "```diff\n" + fixedboss_information[0] + "\n```"
-			else :
-				fixedboss_information[0] = '``` ```'
-	
-			embed = discord.Embed(
-					title = "----- 고 정 보 스 -----",
-					description= fixedboss_information[0],
-					color=0x0000ff
-					)
-			await ctx.send( embed=embed, tts=False)
-			for i in range(len(fixedboss_information)-1):
-				if len(fixedboss_information[i+1]) != 0:
-					fixedboss_information[i+1] = "```diff\n" + fixedboss_information[i+1] + "\n```"
-				else :
-					fixedboss_information[i+1] = '``` ```'
-
-				embed = discord.Embed(
-						title = '',
-						description= fixedboss_information[i+1],
-						color=0x0000ff
-						)
-				await ctx.send( embed=embed, tts=False)
-
-			###########################일반보스출력
-			if len(boss_information[0]) != 0:
-				boss_information[0] = "```diff\n" + boss_information[0] + "\n```"
-			else :
-				boss_information[0] = '``` ```'
-
-			embed = discord.Embed(
-					title = "----- 보스탐 정보 -----",
-					description= boss_information[0],
-					color=0x0000ff
-					)
-			await ctx.send( embed=embed, tts=False)
-			for i in range(len(boss_information)-1):
-				if len(boss_information[i+1]) != 0:
-					boss_information[i+1] = "```diff\n" + boss_information[i+1] + "\n```"
-				else :
-					boss_information[i+1] = '``` ```'
-
-				embed = discord.Embed(
-						title = '',
-						description= boss_information[i+1],
-						color=0x0000ff
-						)
-				await ctx.send( embed=embed, tts=False)
-
-			###########################미예약보스출력
-			if len(tmp_boss_information[0]) != 0:
-				if len(tmp_boss_information) == 1 :
-					tmp_boss_information[0] = "```fix\n" + tmp_boss_information[0][:len(tmp_boss_information[0])-1] + "\n```"
-				else:
-					tmp_boss_information[0] = "```fix\n" + tmp_boss_information[0] + "\n```"
-			else :
-				tmp_boss_information[0] = '``` ```'
-
-			embed = discord.Embed(
-				title = "----- 미예약 보스 -----",
-				description= tmp_boss_information[0],
-				color=0x0000ff
-				)
-			await ctx.send( embed=embed, tts=False)
-			for i in range(len(tmp_boss_information)-1):
-				if len(tmp_boss_information[i+1]) != 0:
-					if i == len(tmp_boss_information)-2:
-						tmp_boss_information[i+1] = "```fix\n" + tmp_boss_information[i+1][:len(tmp_boss_information[i+1])-1] + "\n```"
-					else:
-						tmp_boss_information[i+1] = "```fix\n" + tmp_boss_information[i+1] + "\n```"
-				else :
-					tmp_boss_information[i+1] = '``` ```'
-
-				embed = discord.Embed(
-						title = '',
-						description= tmp_boss_information[i+1],
-						color=0x0000ff
-						)
-				await ctx.send( embed=embed, tts=False)
+			
 
 			await dbSave()
 			await data_list_Save("kill_list.ini", "-----척살명단-----", kill_Data)
